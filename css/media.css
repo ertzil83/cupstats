@@ -1,0 +1,18 @@
+@media all and (min-width: 40em){
+	*{
+
+		/*font-size: 20px !important;*/
+
+	}
+}
+@media all and (min-width: 64em){
+    
+	*{
+
+		/*font-size: 30px !important;*/
+
+	}
+
+
+
+}

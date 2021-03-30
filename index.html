@@ -1,0 +1,362 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+<head>
+  
+  <title>Twitch stats</title>
+  <meta charset = "UTF-8" />
+  <base href="./">
+  <link rel="stylesheet" type="text/css" href="./css/stats-styles.css"/ >
+  <link rel="stylesheet" type="text/css" href="./css/media.css"/ >
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/ >
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="./js/functions_stats.js"></script>
+  <script src="./js/functions_timeline.js"></script>
+  <script src="./js/variables.js"></script>
+  
+  
+
+</head>
+<body>
+  <div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div id="player_overlay_div" class="overlay-content">
+      
+    </div>
+  </div>
+    <button class="general_button" onclick="startStats()">Cargar estadísticas</button>
+    <!--<button onclick="animateTimeline()">Timeline movement</button> -->
+    <button  class="basic_button" onclick="startStats()">Estadísticas equipo</button>
+   
+    <button class="overlay_button" onclick="showTeamAndPlayer()">Overlay equipo + jugador </button>
+    <button class="overlay_button" onclick="showPlayerData()">Overlay Carrusel jugadores </button>
+    <button class="overlay_button" onclick="startCarAnim()">START</button>
+    <button class="overlay_button" onclick="stopCarAnim()">STOP</button>
+    </br>
+  </br>
+    <div class="general_overlay" id="match_stats">
+      <div class="overlay_div" >
+        <div class="overlay_title">
+          <span class="stat_title">Partidako Estatistikak</span>
+        </div>
+        <div class="overlay_stat_div">
+          <div class="stat_div">
+            <div class="stat_row">
+              <div class="column left" >
+                <div class="data_box ">
+                  <span class="stat_data" id="h_shots"></span>
+                </div>
+              </div>
+              <div class="column middle">
+                <span class="stat_name">Jaurtiketak</span>
+              </div>
+              <div class="column right" >
+                <div class="data_box ">
+                  <span class="stat_data" id="a_shots"></span>
+                </div>
+              </div>
+            </div>
+            <div class="stat_row">
+              <div class="column left" >
+                <div class="data_box ">
+                  <span class="stat_data" id="h_shots_ot"></span>
+                </div>
+              </div>
+              <div class="column middle">
+                <span class="stat_name">Atera</span>
+              </div>
+              <div class="column right" >
+                <div class="data_box ">
+                  <span class="stat_data" id="a_shots_ot"></span>
+                </div>
+              </div>
+            </div>
+            <div class="stat_row">
+              <div class="column left" >
+                <div class="data_box ">
+                  <span class="stat_data" id="h_pass"></span>
+                </div>
+              </div>
+              <div class="column middle">
+                <span class="stat_name">Paseak</span>
+              </div>
+              <div class="column right" >
+                <div class="data_box ">
+                  <span class="stat_data" id="a_pass"></span>
+                </div>
+              </div>
+            </div>
+            <div class="stat_row">
+              <div class="column left" >
+                <div class="data_box ">
+                  <span class="stat_data" id="h_poss"></span>
+                </div>
+              </div>
+              <div class="column middle">
+                <span class="stat_name">Baloi jabetza</span>
+              </div>
+              <div class="column right" >
+                <div class="data_box ">
+                  <span class="stat_data" id="a_poss"></span>
+                </div>
+              </div>
+            </div>
+            <div class="stat_row">
+              <div class="column left" >
+                <div class="data_box ">
+                  <span class="stat_data" id="h_fouls"></span>
+                </div>
+              </div>
+              <div class="column middle">
+                <span class="stat_name">Faltak</span>
+              </div>
+              <div class="column right" >
+                <div class="data_box ">
+                  <span class="stat_data" id="a_fouls"></span>
+                </div>
+              </div>
+            </div>
+            <div class="stat_row">
+              <div class="column left" >
+                <div class="data_box ">
+                  <span class="stat_data" id="h_corners"></span>
+                </div>
+              </div>
+              <div class="column middle">
+                <span class="stat_name">Kornerrak</span>
+              </div>
+              <div class="column right" >
+                <div class="data_box ">
+                  <span class="stat_data" id="a_corners"></span>
+                </div>
+              </div>
+            </div>
+            <div class="stat_row">
+              <div class="column left" >
+                <div class="data_box ">
+                  <span class="stat_data" id="h_yellow"></span>
+                </div>
+              </div>
+              <div class="column middle">
+                <span class="stat_name">Txartel horiak</span>
+              </div>
+              <div class="column right" >
+                <div class="data_box ">
+                  <span class="stat_data" id="a_yellow"></span>
+                </div>
+              </div>
+            </div>
+            <div class="stat_row">
+              <div class="column left" >
+                <div class="data_box ">
+                  <span class="stat_data" id="h_red"></span>
+                </div>
+              </div>
+              <div class="column middle">
+                <span class="stat_name">Txartel gorriak</span>
+              </div>
+              <div class="column right" >
+                <div class="data_box ">
+                  <span class="stat_data" id="a_red"></span>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="overlay_sponsor_div image-container">
+          <img class="stat_sponsor"/>
+        </div>
+      </div>
+    </div>
+
+    
+    
+   <!-- <div id="result_div"></div>-->
+  
+
+
+
+    <!--OVERLAY JUGADOR-->
+    <div class="general_player_overlay" id="player_stats">
+    <div class="overlay_div" >
+    
+                <div class="overlay_stat_div">
+                  
+                    <div class="player_stats_name">
+                      <span class="player_name" id="p_name">Mikel Oyarzabal</span>
+                    </div>
+                    
+                      
+                      <div class="player_stats_photo">
+                        
+                          <img id="player_sp"/>
+                      
+                        <span class="player_number" id="p_number">99</span>
+                      </div>
+                    
+                    <div class="player_stats_info">
+                      <div class="player_stat_row">
+                        <div class="player_stats_row_name">
+                          <span class="p_stat_name">Paseak guztira</span>
+                        </div>
+                        <div class="player_stats_row_value">
+                          <div class="data_box_player">
+                            <span class="p_stat_data" id="p_pass">0</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="player_stat_row">
+                        <div class="player_stats_row_name">
+                          <span class="p_stat_name">Loren ipsum</span>
+                        </div>
+                        <div class="player_stats_row_value">
+                          <div class="data_box_player">
+                            <span class="p_stat_data"id="p_g_pass" >0</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="player_stat_row">
+                        <div class="player_stats_row_name">
+                          <span class="p_stat_name">Berreskuratzeak</span>
+                        </div>
+                        <div class="player_stats_row_value">
+                          <div class="data_box_player">
+                            <span class="p_stat_data" id="p_rec">0</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="player_stat_row">
+                        <div class="player_stats_row_name">
+                          <span class="p_stat_name">Jokatutako minutuak</span>
+                        </div>
+                        <div class="player_stats_row_value">
+                          <div class="data_box_player">
+                            <span class="p_stat_data" id="p_p_min">0</span>
+                          </div>
+                        </div>
+                      </div>
+                    
+                    </div>
+                
+                </div>
+                <div class="overlay_sponsor_div image-container">
+                  <img class="stat_sponsor"/>
+                </div>
+
+       
+    </div>
+  </div>  
+<div id="lineup_div"></div>
+
+  
+
+      <div class="general_player_carrousel_overlay" id="p_car_div" >
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
+          <div class="carousel-inner" id="player_stat_car" role="listbox">
+           
+          </div>   
+        </div>
+        <div class="overlay_sponsor_div image-container">
+          <img class="stat_sponsor"/>
+        </div>
+      </div>
+      
+      
+    </div>
+
+
+    <!--OVERLAY TIMELINE-->
+    <!--
+    <div class="general_timeline_overlay" id="timeline_ov">
+      <div class="overlay_div" >
+      
+                  <div class="overlay_timeline_div">
+                    
+                      <div class="player_stats_name">
+                        <span class="player_name" id="p_name">timeline</span>
+                      </div>
+                      <div class="timeline_div" id="tline_div">
+                        <div class="timeline_info " id="tline_info">
+                          <div class="timeline">
+                            <div class="container left">
+                              <div class="content home_content">
+                                <div class="htt_div">
+                                  <span class="tl_min_txt">93'</span></br>
+                                  <span class="tl_title_txt">Bost minutu gehiago jokatuko dira</span></br>
+                                  <span class="tl_desc_txt">Luzapena</span>
+                                  <img class="tl_img_red"/>
+                               </div>
+                              </div>
+                            </div>
+                            <div class="container home_goal right">
+                              <div class="content  away_content">
+                                <span class="tl_min_txt">93'</span></br>
+                                <span class="tl_title_txt">Bost minutu gehiago jokatuko dira</span></br>
+                                <span class="tl_desc_txt">Luzapena</span>
+                                <img class="tl_img_rsgol"/>
+                              </div>
+                            </div>
+                            <div class="container right">
+                              <div class="content away_content">
+                                <span class="tl_min_txt">93'</span></br>
+                                <span class="tl_title_txt">Bost minutu gehiago jokatuko dira</span></br>
+                                <span class="tl_desc_txt">Luzapena</span>
+                                <img class="tl_img_rsgol"/>
+                              </div>
+                            </div>
+                            <div class="container left">
+                              <div class="content home_content">
+                                <div class="htt_div">
+                                  <span class="tl_min_txt">93'</span></br>
+                                  <span class="tl_title_txt">Bost minutu gehiago jokatuko dira</span></br>
+                                  <span class="tl_desc_txt">Luzapena</span>
+                                  <img class="tl_img_red"/>
+                               </div>
+                              </div>
+                            </div>
+                            <div class="container left">
+                              <div class="content home_content">
+                                <div class="htt_div">
+                                  <span class="tl_min_txt">93'</span></br>
+                                  <span class="tl_title_txt">Bost minutu gehiago jokatuko dira</span></br>
+                                  <span class="tl_desc_txt">Luzapena</span>
+                                  <img class="tl_img_red"/>
+                               </div>
+                              </div>
+                            </div>
+                            <div class="container left">
+                              <div class="content home_content">
+                                <div class="htt_div">
+                                  <span class="tl_min_txt">93'</span></br>
+                                  <span class="tl_title_txt">Bost minutu gehiago jokatuko dira</span></br>
+                                  <span class="tl_desc_txt">Luzapena</span>
+                                  <img class="tl_img_red"/>
+                               </div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="period_text_div">
+                          <span class="period_text">Partidaren hasiera</span>
+                        </div>
+                        </div>
+                      </div>
+                        
+                        
+                      
+                     
+                  
+                  </div>
+                  <div class="overlay_sponsor_div image-container">
+                    <img class="stat_sponsor"/>
+                  </div>
+  
+         
+      </div>
+    </div>  -->
+
+    
+  </div>
+</body>
+</html>
