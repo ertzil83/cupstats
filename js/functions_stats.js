@@ -300,7 +300,7 @@ function loadPlayerInfo(id)
  
   document.getElementById("p_name").textContent=player_name;
   document.getElementById("p_number").textContent=player_number;("../img/background.png");
-  document.getElementById("player_sp").src ="../img/Jugadores/"+id+".png";
+  document.getElementById("player_sp").src ="https://raw.githubusercontent.com/ertzil83/cupstats/master/img/Jugadores/"+id+".png";
   document.getElementById("p_pass").textContent=loadPlayerStat(id,"total_pass");
   document.getElementById("p_g_pass").textContent="%"+loadPlayerStat(id,"accurate_pass");
   document.getElementById("p_rec").textContent=loadPlayerStat(id,"ball_recovery");
