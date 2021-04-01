@@ -300,7 +300,7 @@ function loadPlayerInfo(id)
  
   document.getElementById("p_name").textContent=player_name;
   document.getElementById("p_number").textContent=player_number;("../img/background.png");
-  document.getElementById("player_sp").src ="../Estadisticas/img/Jugadores/"+id+".png";
+  document.getElementById("player_sp").src ="../img/Jugadores/"+id+".png";
   document.getElementById("p_pass").textContent=loadPlayerStat(id,"total_pass");
   document.getElementById("p_g_pass").textContent="%"+loadPlayerStat(id,"accurate_pass");
   document.getElementById("p_rec").textContent=loadPlayerStat(id,"ball_recovery");
@@ -435,10 +435,43 @@ function completeCarrousel()
       car_items=car_items+ getCarrouselItem(player_id,"active");
     else
       car_items=car_items+ getCarrouselItem(player_id,"");
+    var subID=getSubstitutionId(player_id);
+    if(subID!="")
+      car_items=car_items+ getCarrouselItem(subID,"");
   }
   document.getElementById("player_stat_car").innerHTML =car_items;
   $("#myCarousel").carousel({interval: 500});
   
+}
+
+
+function getSubstitutionId(id)
+{
+  var result="";
+  
+  if(teamInfo.hasOwnProperty('Substitution'))
+  {
+    var sub_list=teamInfo.Substitution;
+    if(Array.isArray(sub_list))
+      for (var i = 0; i < sub_list.length; i++)
+      {
+        if(sub_list[i]["@attributes"].SubOff==id)
+        {
+          result=sub_list[i]["@attributes"].SubOn;
+          break;
+        }
+      }
+    else
+    {
+      if(sub_list["@attributes"].SubOff==id)
+        {
+          result=sub_list["@attributes"].SubOn;
+          
+        }
+    }
+    
+  }
+  return result;
 }
 
 function getCarrouselItem(id,active)
