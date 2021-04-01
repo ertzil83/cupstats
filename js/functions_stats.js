@@ -478,7 +478,7 @@ function getCarrouselItem(id,active)
 {
   var number=getPlayerNumber(id);
   var name=getPlayerName(id);
-  var photo="https://tag.realsociedad.eus/contenido/media/2021/03/"+id+".png";
+  var photo="https://raw.githubusercontent.com/ertzil83/cupstats/master/img/Jugadores/"+id+".png"//"https://tag.realsociedad.eus/contenido/media/2021/03/"+id+".png";
   var stat1=loadPlayerStat(id,"total_pass");
   var stat2="%"+loadPlayerStat(id,"accurate_pass");
   var stat3=loadPlayerStat(id,"ball_recovery");
