@@ -295,18 +295,103 @@ function getPlayerNumber(id)
 
 function loadPlayerInfo(id)
 {
+  var player=getPlayer(id);
+  console.log(player);
   var player_name=getPlayerName(id);
   var player_number=getPlayerNumber(id);
- 
+  if(player["@attributes"].Status=="Start")
+  {
+    loadStats(id,player["@attributes"].Position);
+  }
+  else
+  {
+    loadStats(id,player["@attributes"].SubPosition);
+  }
+
+
+
   document.getElementById("p_name").textContent=player_name;
   document.getElementById("p_number").textContent=player_number;("../img/background.png");
   document.getElementById("player_sp").src ="https://raw.githubusercontent.com/ertzil83/cupstats/master/img/Jugadores/"+id+".png";
-  document.getElementById("p_pass").textContent=loadPlayerStat(id,"total_pass");
+  /*document.getElementById("p_pass").textContent=loadPlayerStat(id,"total_pass");
   document.getElementById("p_g_pass").textContent="%"+loadPlayerStat(id,"accurate_pass");
   document.getElementById("p_rec").textContent=loadPlayerStat(id,"ball_recovery");
-  document.getElementById("p_p_min").textContent=loadPlayerStat(id,"mins_played");
+  document.getElementById("p_p_min").textContent=loadPlayerStat(id,"mins_played");*/
   showSinglePlayerData();
  // document.querySelectorAll("#player_stats").forEach(a=>a.style.display = "block");
+}
+
+function loadStats(id,position)
+{
+  if(position=="Goalkeeper")
+    getGoalkeeperData(id);
+  else if (position=="Defender")
+    getDefenderData(id);
+  else if(position=="Midfielder")
+    getMidifielderData(id);
+  else 
+    getAttackerData(id);
+}
+
+function getGoalkeeperData(id)
+{
+  document.getElementById('p_s_name1').innerHTML = "Geldiketak";
+  document.getElementById('p_s_name2').innerHTML = "Ukitutako baloiak";
+  document.getElementById('p_s_name3').innerHTML = "Paseak";
+  document.getElementById('p_s_name4').innerHTML = "Ateko sakeak";
+  document.getElementById("p_pass").textContent=loadPlayerStat(id,"saves");
+  document.getElementById("p_g_pass").textContent=loadPlayerStat(id,"touches");
+  document.getElementById("p_rec").textContent=loadPlayerStat(id,"total_pass");
+  document.getElementById("p_p_min").textContent=loadPlayerStat(id,"goal_kicks");
+}
+function getDefenderData(id)
+{
+  document.getElementById('p_s_name1').innerHTML = "Paseak";
+  document.getElementById('p_s_name2').innerHTML = "Urruntzeak";
+  document.getElementById('p_s_name3').innerHTML = "Berreskuratzeak";
+  document.getElementById('p_s_name4').innerHTML = "Golak";
+  document.getElementById("p_pass").textContent=loadPlayerStat(id,"total_pass");
+  document.getElementById("p_g_pass").textContent=loadPlayerStat(id,"total_clearance");
+  document.getElementById("p_rec").textContent=loadPlayerStat(id,"ball_recovery");
+  document.getElementById("p_p_min").textContent=loadPlayerStat(id,"goals");
+}
+function getMidifielderData(id)
+{
+  document.getElementById('p_s_name1').innerHTML = "Berreskuratzeak";
+  document.getElementById('p_s_name2').innerHTML = "Irabazitako lehiak";
+  document.getElementById('p_s_name3').innerHTML = "Paseak";
+  document.getElementById('p_s_name4').innerHTML = "Golak";
+  document.getElementById("p_pass").textContent=loadPlayerStat(id,"ball_recovery");
+  document.getElementById("p_g_pass").textContent=loadPlayerStat(id,"duel_won");
+  document.getElementById("p_rec").textContent=loadPlayerStat(id,"total_pass");
+  document.getElementById("p_p_min").textContent=loadPlayerStat(id,"goals");
+}
+function getAttackerData(id)
+{
+  document.getElementById('p_s_name1').innerHTML = "Paseak";
+  document.getElementById('p_s_name2').innerHTML = "Erremateak";
+  document.getElementById('p_s_name3').innerHTML = "Asistentziak";
+  document.getElementById('p_s_name4').innerHTML = "Golak";
+  document.getElementById("p_pass").textContent=loadPlayerStat(id,"total_pass");
+  document.getElementById("p_g_pass").textContent=loadPlayerStat(id,"total_scoring_att");
+  document.getElementById("p_rec").textContent=loadPlayerStat(id,"goal_assits");
+  document.getElementById("p_p_min").textContent=loadPlayerStat(id,"goals");
+}
+
+function getPlayer(id)
+{
+  var selected_player;
+  for (var i = 0; i < lineup.length; i++)
+  {
+    var player=lineup[i];
+    var player_id=player["@attributes"].PlayerRef;
+    if(id==player_id)
+    {
+      selected_player=player;
+      break;
+    }
+  }
+  return selected_player;
 }
 
 function loadPlayerStat(id,stat_name)
@@ -476,13 +561,71 @@ function getSubstitutionId(id)
 
 function getCarrouselItem(id,active)
 {
+  var stat1,stat2,stat3,stat4;
+  var name1,name2,name3,name4;
+  var position;
+  var player=getPlayer(id);
   var number=getPlayerNumber(id);
   var name=getPlayerName(id);
+  if(player["@attributes"].Status=="Start")
+  {
+    position=player["@attributes"].Position;    
+  }
+  else
+  {
+    position=player["@attributes"].SubPosition;
+  }
+  if(position=="Goalkeeper")
+  {
+    name1 = "Geldiketak";
+    name2 = "Ukitutako baloiak";
+    name3 = "Paseak";
+    name4 = "Ateko sakeak";
+    stat1=loadPlayerStat(id,"saves");
+    stat2=loadPlayerStat(id,"touches");
+    stat3=loadPlayerStat(id,"total_pass");
+    stat4=loadPlayerStat(id,"goal_kicks");
+  }
+  else if (position=="Defender")
+    {
+      name1 = "Paseak";
+    name2 = "Urruntzeak";
+    name3 = "Berreskuratzeak";
+    name4 = "Golak";
+    stat1=loadPlayerStat(id,"total_pass");
+    stat2=loadPlayerStat(id,"total_clearance");
+    stat3=loadPlayerStat(id,"ball_recovery");
+    stat4=loadPlayerStat(id,"goals");
+    }
+  else if(position=="Midfielder")
+    {
+      name1 = "Berreskuratzeak";
+    name2 = "Irabazitako lehiak";
+    name3 = "Paseak";
+    name4 = "Golak";
+    stat1=loadPlayerStat(id,"ball_recovery");
+    stat2=loadPlayerStat(id,"duel_won");
+    stat3=loadPlayerStat(id,"total_pass");
+    stat4=loadPlayerStat(id,"goals");
+    
+    }
+  else 
+    {
+      name1 = "Paseak";
+    name2 = "Erremateak";
+    name3 = "Asistentziak";
+    name4 = "Golak";
+    stat1=loadPlayerStat(id,"total_pass");
+    stat2=loadPlayerStat(id,"total_scoring_att");
+    stat3=loadPlayerStat(id,"goal_assits");
+    stat4=loadPlayerStat(id,"goals");
+    
+    }
   var photo="https://raw.githubusercontent.com/ertzil83/cupstats/master/img/Jugadores/"+id+".png"//"https://tag.realsociedad.eus/contenido/media/2021/03/"+id+".png";
-  var stat1=loadPlayerStat(id,"total_pass");
+  /*var stat1=loadPlayerStat(id,"total_pass");
   var stat2="%"+loadPlayerStat(id,"accurate_pass");
   var stat3=loadPlayerStat(id,"ball_recovery");
-  var stat4=loadPlayerStat(id,"mins_played");
+  var stat4=loadPlayerStat(id,"mins_played");*/
   var car_item='<div class="carousel-item '+active+'">'+
   '<div class="overlay_stat_div">'+  
     '<div class="player_stats_name">'+
@@ -495,7 +638,7 @@ function getCarrouselItem(id,active)
     '<div class="player_stats_info">'+
       '<div class="player_stat_row">'+
         '<div class="player_stats_row_name">'+
-          '<span class="p_stat_name">Paseak guztira</span>'+
+          '<span class="p_stat_name">'+name1+'</span>'+
         '</div>'+
         '<div class="player_stats_row_value">'+
           '<div class="data_box_player">'+
@@ -505,7 +648,7 @@ function getCarrouselItem(id,active)
       '</div>'+
       '<div class="player_stat_row">'+
         '<div class="player_stats_row_name">'+
-          '<span class="p_stat_name">Loren ipsum</span>'+
+          '<span class="p_stat_name">'+name2+'</span>'+
         '</div>'+
         '<div class="player_stats_row_value">'+
           '<div class="data_box_player">'+
@@ -515,7 +658,7 @@ function getCarrouselItem(id,active)
       '</div>'+
       '<div class="player_stat_row">'+
         '<div class="player_stats_row_name">'+
-          '<span class="p_stat_name">Berreskuratzeak</span>'+
+          '<span class="p_stat_name">'+name3+'</span>'+
         '</div>'+
         '<div class="player_stats_row_value">'+
           '<div class="data_box_player">'+
@@ -525,7 +668,7 @@ function getCarrouselItem(id,active)
       '</div>'+
       '<div class="player_stat_row">'+
         '<div class="player_stats_row_name">'+
-          '<span class="p_stat_name">Jokatutako minutuak</span>'+
+          '<span class="p_stat_name">'+name4+'</span>'+
         '</div>'+
         '<div class="player_stats_row_value">'+
           '<div class="data_box_player">'+
