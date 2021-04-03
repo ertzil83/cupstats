@@ -38,7 +38,7 @@ function loadExampleOnline()
     }
   });
   
-  xhr.open("GET", "https://cors.bridged.cc/https://secure.omo.akamai.opta.net/?game_id=2136448&feed_type=f9&user=RealSociedad&psw=zcgmFn8QFd&json=%22%22");
+  xhr.open("GET", "https://cors.bridged.cc/https://secure.omo.akamai.opta.net/?game_id=2061604&feed_type=f9&user=RealSociedad&psw=zcgmFn8QFd&json=%22%22");
   
   
   xhr.send();
