@@ -31,7 +31,8 @@ function loadExampleOnline()
       // getMatchResult();
       loadMatchData();     
       loadLineUp();
-      completeCarrousel();
+      if(!carrousel_showing)
+        completeCarrousel();
       
       document.querySelectorAll(".overlay_button").forEach(a=>a.style.display = "block");
     }
@@ -43,8 +44,11 @@ function loadExampleOnline()
   xhr.send();
 
 }
+
+var carrousel_showing=false;
 function showTeamAndPlayer()
 {
+  carrousel_showing=false;
   document.querySelectorAll("#p_car_div").forEach(a=>a.style.display = "none");
   document.querySelectorAll("#match_stats").forEach(a=>a.style.display = "block");
   document.querySelectorAll("#lineup_div").forEach(a=>a.style.display = "block");
@@ -53,6 +57,7 @@ function showTeamAndPlayer()
 
 function showPlayerData()
 {
+  carrousel_showing=true;
   document.querySelectorAll("#lineup_div").forEach(a=>a.style.display = "none");
   document.querySelectorAll("#match_stats").forEach(a=>a.style.display = "none");
   document.querySelectorAll("#player_stats").forEach(a=>a.style.display = "none");
@@ -61,7 +66,7 @@ function showPlayerData()
 
 function showSinglePlayerData()
 {
-  
+  carrousel_showing=false;
   document.querySelectorAll("#match_stats").forEach(a=>a.style.display = "none");
   document.querySelectorAll("#player_stats").forEach(a=>a.style.display = "block");
   
