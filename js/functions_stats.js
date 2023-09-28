@@ -350,10 +350,10 @@ function loadStats(id,position)
 
 function getGoalkeeperData(id)
 {
-  document.getElementById('p_s_name1').innerHTML = "Geldiketak";
-  document.getElementById('p_s_name2').innerHTML = "Ukitutako baloiak";
-  document.getElementById('p_s_name3').innerHTML = "Paseak";
-  document.getElementById('p_s_name4').innerHTML = "Ateko sakeak";
+  document.getElementById('p_s_name1').innerHTML = "Saves";
+  document.getElementById('p_s_name2').innerHTML = "Touched balls";
+  document.getElementById('p_s_name3').innerHTML = "Passes";
+  document.getElementById('p_s_name4').innerHTML = "Goal kicks";
   document.getElementById("p_pass").textContent=loadPlayerStat(id,"saves");
   document.getElementById("p_g_pass").textContent=loadPlayerStat(id,"touches");
   document.getElementById("p_rec").textContent=loadPlayerStat(id,"total_pass");
@@ -361,10 +361,10 @@ function getGoalkeeperData(id)
 }
 function getDefenderData(id)
 {
-  document.getElementById('p_s_name1').innerHTML = "Paseak";
-  document.getElementById('p_s_name2').innerHTML = "Urruntzeak";
-  document.getElementById('p_s_name3').innerHTML = "Berreskuratzeak";
-  document.getElementById('p_s_name4').innerHTML = "Golak";
+  document.getElementById('p_s_name1').innerHTML = "Passes";
+  document.getElementById('p_s_name2').innerHTML = "Clearances";
+  document.getElementById('p_s_name3').innerHTML = "Recoveries";
+  document.getElementById('p_s_name4').innerHTML = "Goals";
   document.getElementById("p_pass").textContent=loadPlayerStat(id,"total_pass");
   document.getElementById("p_g_pass").textContent=loadPlayerStat(id,"total_clearance");
   document.getElementById("p_rec").textContent=loadPlayerStat(id,"ball_recovery");
@@ -372,10 +372,10 @@ function getDefenderData(id)
 }
 function getMidifielderData(id)
 {
-  document.getElementById('p_s_name1').innerHTML = "Berreskuratzeak";
-  document.getElementById('p_s_name2').innerHTML = "Irabazitako lehiak";
-  document.getElementById('p_s_name3').innerHTML = "Paseak";
-  document.getElementById('p_s_name4').innerHTML = "Golak";
+  document.getElementById('p_s_name1').innerHTML = "Recoveries";
+  document.getElementById('p_s_name2').innerHTML = "Won duels";
+  document.getElementById('p_s_name3').innerHTML = "Passes";
+  document.getElementById('p_s_name4').innerHTML = "Goals";
   document.getElementById("p_pass").textContent=loadPlayerStat(id,"ball_recovery");
   document.getElementById("p_g_pass").textContent=loadPlayerStat(id,"duel_won");
   document.getElementById("p_rec").textContent=loadPlayerStat(id,"total_pass");
@@ -383,10 +383,10 @@ function getMidifielderData(id)
 }
 function getAttackerData(id)
 {
-  document.getElementById('p_s_name1').innerHTML = "Paseak";
-  document.getElementById('p_s_name2').innerHTML = "Erremateak";
-  document.getElementById('p_s_name3').innerHTML = "Asistentziak";
-  document.getElementById('p_s_name4').innerHTML = "Golak";
+  document.getElementById('p_s_name1').innerHTML = "Passes";
+  document.getElementById('p_s_name2').innerHTML = "Scoring attends";
+  document.getElementById('p_s_name3').innerHTML = "Assists";
+  document.getElementById('p_s_name4').innerHTML = "Goals";
   document.getElementById("p_pass").textContent=loadPlayerStat(id,"total_pass");
   document.getElementById("p_g_pass").textContent=loadPlayerStat(id,"total_scoring_att");
   document.getElementById("p_rec").textContent=loadPlayerStat(id,"goal_assits");
