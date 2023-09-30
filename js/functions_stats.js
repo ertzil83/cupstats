@@ -43,7 +43,7 @@ function loadExampleOnline()
   
   xhr.send();*/
 
-  opta_match_id="2372280";
+  opta_match_id="2372299";
   xhr.open("GET", "https://proxy.cors.sh/https://secure.omo.akamai.opta.net/?game_id="+opta_match_id+"&feed_type=f9&user=RealSociedad&psw=zcgmFn8QFd&json=%22%22");
  // xhr.open("GET","https://secure.omo.akamai.opta.net/?game_id=2372239&feed_type=f9&user=RealSociedad&psw=zcgmFn8QFd&json=%22%22");
   xhr.setRequestHeader("x-cors-api-key", "temp_0f6f1cb644c0fa2a982dba14bf025b38");
@@ -592,10 +592,10 @@ function getCarrouselItem(id,active)
   }
   if(position=="Goalkeeper")
   {
-    name1 = "Geldiketak";
-    name2 = "Ukitutako baloiak";
-    name3 = "Paseak";
-    name4 = "Ateko sakeak";
+    name1 = "Saves";
+    name2 = "Touched balls";
+    name3 = "Passes";
+    name4 = "Goal kicks";
     stat1=loadPlayerStat(id,"saves");
     stat2=loadPlayerStat(id,"touches");
     stat3=loadPlayerStat(id,"total_pass");
@@ -603,10 +603,10 @@ function getCarrouselItem(id,active)
   }
   else if (position=="Defender")
     {
-      name1 = "Paseak";
-    name2 = "Urruntzeak";
-    name3 = "Berreskuratzeak";
-    name4 = "Golak";
+      name1 = "Passes";
+    name2 = "Clearances";
+    name3 = "Recoveries";
+    name4 = "Goals";
     stat1=loadPlayerStat(id,"total_pass");
     stat2=loadPlayerStat(id,"total_clearance");
     stat3=loadPlayerStat(id,"ball_recovery");
@@ -614,10 +614,10 @@ function getCarrouselItem(id,active)
     }
   else if(position=="Midfielder")
     {
-      name1 = "Berreskuratzeak";
-    name2 = "Irabazitako lehiak";
-    name3 = "Paseak";
-    name4 = "Golak";
+      name1 = "Recoveries";
+    name2 = "Won duels";
+    name3 = "Passes";
+    name4 = "Goals";
     stat1=loadPlayerStat(id,"ball_recovery");
     stat2=loadPlayerStat(id,"duel_won");
     stat3=loadPlayerStat(id,"total_pass");
@@ -626,10 +626,10 @@ function getCarrouselItem(id,active)
     }
   else 
     {
-      name1 = "Paseak";
-    name2 = "Erremateak";
-    name3 = "Asistentziak";
-    name4 = "Golak";
+      name1 = "Passes";
+    name2 = "Scoring att";
+    name3 = "Assits";
+    name4 = "Goals";
     stat1=loadPlayerStat(id,"total_pass");
     stat2=loadPlayerStat(id,"total_scoring_att");
     stat3=loadPlayerStat(id,"goal_assits");
