@@ -28,7 +28,7 @@ function loadExampleOnline()
       away_teamInfo=stats.SoccerFeed.SoccerDocument.MatchData.TeamData[1];
       teamInfo=home_teamInfo;
       playerlist=home_playerlist;
-      // getMatchResult();
+      
       loadMatchData();     
       loadLineUp();
       if(!carrousel_showing)
@@ -38,19 +38,13 @@ function loadExampleOnline()
     }
   });
   
-  /*xhr.open("GET", "https://cors.bridged.cc/https://secure.omo.akamai.opta.net/?game_id=2061604&feed_type=f9&user=RealSociedad&psw=zcgmFn8QFd&json=%22%22");
-  
-  
-  xhr.send();*/
+ 
 
-  opta_match_id="2372440";
+  opta_match_id="2372461";
   xhr.open("GET", "https://proxy.cors.sh/https://secure.omo.akamai.opta.net/?game_id="+opta_match_id+"&feed_type=f9&user=RealSociedad&psw=zcgmFn8QFd&json=%22%22");
- // xhr.open("GET","https://secure.omo.akamai.opta.net/?game_id=2372239&feed_type=f9&user=RealSociedad&psw=zcgmFn8QFd&json=%22%22");
-  xhr.setRequestHeader("x-cors-api-key", "temp_0f6f1cb644c0fa2a982dba14bf025b38");
-xhr.setRequestHeader("x-requested-with", "XMLHttpRequest");
+ xhr.setRequestHeader("x-cors-api-key", "temp_0f6f1cb644c0fa2a982dba14bf025b38");
+ xhr.setRequestHeader("x-requested-with", "XMLHttpRequest");
   
-//const xhr = new XMLHttpRequest()
-//xhr.open('GET', 'https://secure.omo.akamai.opta.net/?game_id=2372239&feed_type=f9&user=RealSociedad&psw=zcgmFn8QFd&json=%22%22', true, null, null)
 xhr.send()
 
 }
